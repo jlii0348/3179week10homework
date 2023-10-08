@@ -1,0 +1,21 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/jlii0348/A2-_mapdata./main/audomcitypairs-202102.csv"},
+    "mark": "bar",
+    "selection": {
+        "citySelector": {
+            "type": "multi",
+            "fields": ["City1"],
+            "bind": {"input": "select", "options": [null, "ADELAIDE", "ALBURY", "ALICE SPRINGS", "BALLINA","BRISBANE","BROOME","CAIRNS","CANBERRA","COFFS HARBOUR","DARWIN","DEVONPORT","DUBBO","GOLD COAST","MELBOURNE","PERTH","SUNSHINE COAST","SYDNEY"]},
+            "empty": "all"
+        }
+    },
+    "transform": [
+        {"filter": {"selection": "citySelector"}}
+    ],
+    "encoding": {
+        "x": {"field": "City1", "type": "nominal", "axis": {"labelAngle": -45}},
+        "y": {"field": "Distance_GC_(km)", "type": "quantitative", "aggregate": "sum"},
+        "tooltip": {"field": "Distance_GC_(km)", "type": "quantitative", "aggregate": "sum", "title": "Distance_GC_(km)"}
+    }
+}
